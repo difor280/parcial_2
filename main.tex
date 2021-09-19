@@ -53,7 +53,7 @@ Manejar correctamente las librerías de Arduino para darle el color deseado a nu
 \caption{Matriz de leds}
 \label{fig:matriz de leds}
 \end{figure}
-\label{contenido}
+\label{contenio}
 En la imagen se plantea una matriz de leds 16*16 donde el primer led a tomar en cuenta será el superior a la izquierda y de allí se ira avanzando hacia la derecha, decidimos tomar este orden para tener una mayor facilidad de compresión de como se ira reflejando los cambios en cada led.
 
 
@@ -62,42 +62,60 @@ En la imagen se plantea una matriz de leds 16*16 donde el primer led a tomar en 
 
 \subsection{Información de la imagen  }
 
-A continuación, se presenta el código \ref{codigo_ejemplo}, que nos permite incluir en el informe partes de programa que requieran una explicación adicional.
+Para poder manejar la información de la imagen en el tinkercard lo que tenemos que hacer es por medio de C++ transformar los datos de cada pixel en una matriz, modificarla y pegar dicha matriz como constantes en el simulador para que de esta manera podamos manejar la información de cada uno de los pixeles, como se muestra en el pseudo código \ref{codigo_ejemplo}. 
 \begin{lstlisting}[language=C++, label=codigo_ejemplo]
-// Programa desarrollado, compilado y ejecutado en https://www.onlinegdb.com
+
+// Incluimos las librerias necesarias para leer
+//la imagen y podemos realizar nuestro codigo
 #include <iostream>
-
-/*
- * Esto es un comentario de varias lineas
- */
-
-// Comentario de una sola linea
-
-#define N 10
-
+#include "QImage"
+#include "string.h"
+#include "fstream"
 using namespace std;
 
 int main()
 {
-    
-    for( int i = 0 ; i < N ; i++ ){
-        
-        if( !(i % 2) )
-            cout << " El valor de i es -> " << i << endl;
+    ///////// LECTURA DE PIXELES DE LA IMAGEN //////////
+//declaramos las clases para la lectura de imagen
+// y la de manipulacion de archivos de texto
+    QImage imagen("direccion de la imagen ");
+    fstream matriz("nombre del archivo de texto", fstream::app);
+    unsigned InfLeds[3][16][16], azul,verde,rojo;
+    string cadena;
+// se hace una cadena de for para que se se obtenga
+//la informacion de cada una de los pixeles de la imagen
+
+    for(iterador <= altura de la imagen)
+    {
+        for(iterador<= ancho de la imagen)
+        {
+
+           InfLeds[0][iterador altura][iterador ancho]=azul;
+           InfLeds[1][iterador altura][iterador ancho]=verde;
+           InfLeds[2][iterador altura][iterador ancho]=rojo;
+        }
     }
-    
+
+
+ /////////////////////////////////////////////////////////////////////////////////////////
+
+    /// ingresar datos al txt ///
+    for(iterador <= altura de la matriz de leds)
+    {   cadena=cadena+"[";
+        for(iterador<= ancho de la matriz de leds)
+        {
+
+           cadena=cadena+"azul,rojo,verde";
+           matriz<<cadena;
+
+        }
+         cadena=cadena+"]";
+    }
+
+
+
     return 0;
 }
-
-//Resultado programa
-
-/*
-El valor de i es -> 0
-El valor de i es -> 2
-El valor de i es -> 4
-El valor de i es -> 6
-El valor de i es -> 8
-*/
 \end{lstlisting}
 En la sección \ref{imagenes}, se presentará como añadir ilustraciones al texto.
 
