@@ -121,18 +121,32 @@ int main()
 
 \subsection{sobremuestreo} \label{contenido}
 El sobre muestreo según la definición dada en clase, es agarrar una imagen de una resolución baja o de poca densidad de pixeles y mediante un procedimiento ir aumentando la densidad   de la matriz, subiendo por ende la calidad.\\\\
-Para cumplir ese procedimiento y mejorar la calidad de la imagen, vamos a tener en cuenta el  método de aumentar  separando los pixeles e ir rellenando los espacios con colores semejantes que vayan escalando al color del pixel vecino como se muestra en la imagen 
+Para cumplir ese procedimiento y mejorar la calidad de la imagen, vamos a tener en cuenta el  método de aumentar  separando los pixeles e ir rellenando los espacios con colores semejantes que vayan escalando al color del pixel vecino como se muestra en la imagen. 
 
 \begin{figure}[h]
-\includegraphics[width=6cm]{matriz_a_llenar.png}
+\includegraphics[width=4cm]{matriz_a_llenar.png}
+\includegraphics[width=4cm]{llenado_de_matriz.png}
 \centering
 \caption{separacion de pixeles}
 \label{fig:matriz de leds}
 \end{figure}
 
+
+
+
+
+
 \subsubsection{sub muestreo }\label{contenido}
+Una estrategia para reducir el espacio entre pixeles sería, asignándole a los nuevos pixeles el gradiente o extrapolación matemática de los pixeles eliminados combinando proporcionalmente las intensidades de los pixeles que conocemos, si esto lo hacemos con todos los pixeles obtendríamos una imagen con un tamaño reducido que no pierde mucho la información que contenía la imagen. \\\\
+Otra estrategia para reducir el tamaño de la imagen seria tomar varios pixeles con valores en RGB que tengan el mismo valor de píxel, para posteriormente tomar el píxel central y eliminar los del alrededor para tener la misma información inicial en una cantidad menor de pixeles.\\\\
 
-
+\begin{figure}[h]
+\includegraphics[width=6cm]{MatrizCompleta.png}
+\includegraphics[width=6cm]{MatrizReducida.png}
+\centering
+\caption{Redución en el numero de pixeles}
+\label{fig:matriz de leds}
+\end{figure}
 
 
 \bibliographystyle{IEEEtran}
