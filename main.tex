@@ -53,6 +53,7 @@ Manejar correctamente las librerías de Arduino para darle el color deseado a nu
 \caption{Matriz de leds}
 \label{fig:matriz de leds}
 \end{figure}
+
 \label{contenio}
 En la imagen se plantea una matriz de leds 16*16 donde el primer led a tomar en cuenta será el superior a la izquierda y de allí se ira avanzando hacia la derecha, decidimos tomar este orden para tener una mayor facilidad de compresión de como se ira reflejando los cambios en cada led.
 
@@ -117,14 +118,22 @@ int main()
     return 0;
 }
 \end{lstlisting}
-En la sección \ref{imagenes}, se presentará como añadir ilustraciones al texto.
 
-\section{Inclusión de imágenes} \label{imagenes}
+\subsection{sobremuestreo} \label{contenido}
+El sobre muestreo según la definición dada en clase, es agarrar una imagen de una resolución baja o de poca densidad de pixeles y mediante un procedimiento ir aumentando la densidad   de la matriz, subiendo por ende la calidad.\\\\
+Para cumplir ese procedimiento y mejorar la calidad de la imagen, vamos a tener en cuenta el  método de aumentar  separando los pixeles e ir rellenando los espacios con colores semejantes que vayan escalando al color del pixel vecino como se muestra en la imagen 
+
+\begin{figure}[h]
+\includegraphics[width=6cm]{matriz_a_llenar.png}
+\centering
+\caption{separacion de pixeles}
+\label{fig:matriz de leds}
+\end{figure}
+
+\subsubsection{sub muestreo }\label{contenido}
 
 
 
-
-Las secciones (\ref{intro}), (\ref{contenido}) y (\ref{imagenes}) dependen del estilo del documento.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
