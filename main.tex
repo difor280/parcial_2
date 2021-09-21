@@ -136,7 +136,7 @@ Para cumplir ese procedimiento y mejorar la calidad de la imagen, vamos a tener 
 
 
 
-\subsubsection{sub muestreo }\label{contenido}
+\subsection{sub muestreo }\label{contenido}
 Una estrategia para reducir el espacio entre pixeles sería, asignándole a los nuevos pixeles el gradiente o extrapolación matemática de los pixeles eliminados combinando proporcionalmente las intensidades de los pixeles que conocemos, si esto lo hacemos con todos los pixeles obtendríamos una imagen con un tamaño reducido que no pierde mucho la información que contenía la imagen. \\\\
 Otra estrategia para reducir el tamaño de la imagen seria tomar varios pixeles con valores en RGB que tengan el mismo valor de píxel, para posteriormente tomar el píxel central y eliminar los del alrededor para tener la misma información inicial en una cantidad menor de pixeles.\\\\
 
@@ -148,6 +148,18 @@ Otra estrategia para reducir el tamaño de la imagen seria tomar varios pixeles 
 \label{fig:matriz de leds}
 \end{figure}
 
+\subsection{adecuacion de tamaño }
+Para el presente trabajo de procesamiento de imágenes para posteriormente implementarlo en el Tinkercard y por ende reproducirlo tenemos que adecuar la imagen procesada para que sea cuadrada según el circuito montado.\\
+El código a implementar para solucionar el problema de la imagen no cuadrada o que no encaje con el circuito consiste en  ir escaneando pixel por pixel y encontrar  líneas que tengan información igual a ambos lados de donde se esté escaneando  e ir eliminándola hasta obtener el tamaño deseado y si la imagen no tiene información repetida se ira promediando el color con los pixeles vecinos y de esta manera ir acortando la imagen hasta quedar con el tamaño deseado.
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{bandera_pixel.png}
+\includegraphics[width=10cm]{eliminar_pixel.png}
+\includegraphics[width=9cm]{acomodar.png}
+\centering
+\caption{cortar pixeles iguales}
+\label{fig:matriz de leds}
+\end{figure}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
