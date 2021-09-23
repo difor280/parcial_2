@@ -1,44 +1,39 @@
 #include <iostream>
 #include <QImage>
 #include <fstream>
+#include <string>
 
 
 using namespace std;
-
 int main()
 {
     string filename= "../001/Imagenes/Bandera.png", cadena;
     QImage im(filename.c_str() );
-    ofstream archivo;
+
 
     unsigned int pixelX= im.height();
     unsigned int pixelY= im.width();
-    unsigned int InfLeds[3][pixelX][pixelY];
+    unsigned int **azul=new unsigned *[pixelX],**verde=new unsigned *[pixelX],**rojo=new unsigned *[pixelX];//las tres matrices de colores diferentes
+    //en la posicion 0 es se guarda azul
+    //en la posision 1 se guarda en verde
+    //en la posision 3 se guarda en rojo
 
-    for(unsigned int x=0 ; x <= pixelX ; ++x ){
-        for(unsigned int y=0 ; y <= pixelY ; ++y){
-            InfLeds[0][y][x]=im.pixelColor(x,y).blue();
-            InfLeds[1][y][x]=im.pixelColor(x,y).green();
-            InfLeds[2][y][x]=im.pixelColor(x,y).red();
+    for(unsigned int x=0 ; x <= pixelX ; ++x )
+    {
+        azul[x]=new unsigned [pixelY];
+        verde[x]=new unsigned [pixelY];
+        rojo[x]=new unsigned [pixelY];
+        for(unsigned int y=0 ; y <= pixelY ; ++y)
+        {
+            azul[y][x]=im.pixelColor(x,y).blue();
+             verde[y][x]=im.pixelColor(x,y).green();
+            rojo[y][x]=im.pixelColor(x,y).red();
        }
     }
 
 
-    archivo.open("prueba.txt", ios :: out);
-
-
-
-    for (unsigned int i=0 ; i<= pixelY ; ++i){
-        cadena=cadena+"[";
-        for(unsigned int j=0 ; j <= pixelX ; ++j){
-
-            cadena=cadena+"";
-            archivo<<cadena;
-        }
-        cadena=cadena+"]"+"\n";
-        }
-    archivo.close();
 
 
     return 0;
 }
+
