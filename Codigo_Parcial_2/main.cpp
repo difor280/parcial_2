@@ -9,10 +9,11 @@ using namespace std;
 
 void entrega(unsigned **,unsigned**,unsigned**);
 void meterDat(unsigned**);
+int Comprobar_tamaño(int pixelY,int pixelX);
 
 int main()
 {
-    string filename= "../002/Imagenes/Bandera_02.png";
+    string filename= "../001/Imagenes/Bandera_02.png";
     QImage im(filename.c_str());
 
 
@@ -23,6 +24,8 @@ int main()
     //en la posicion 0 es se guarda azul
     //en la posision 1 se guarda en verde
     //en la posision 3 se guarda en rojo
+
+    cout<<"el valor es: "<<Comprobar_tamaño(pixelY, pixelX)<<endl;
 
     for(unsigned int x=0 ; x <= pixelX ; ++x )
     {
@@ -94,4 +97,18 @@ void meterDat(unsigned**entrega)
 
     archivo.close();
 
+}
+
+int Comprobar_tamaño(int pixelY,int pixelX){
+    //comprobar si la matriz necesita sobremuestreo
+    if(pixelX < 16 and pixelY<16){
+        return 1;
+
+    }else if(pixelX >16 and pixelY >16 ){  //comprobar si la matriz necesita submuestreo
+        return 2;
+    }else if ( (pixelX>16 and pixelY<16) or (pixelX<16 and pixelY>16)){  //comprobar si la matriz necesita encuadramiento
+        return 3;
+    }else{  //en este caso la matriz no necesita ser modificada
+    return 4;
+}
 }
