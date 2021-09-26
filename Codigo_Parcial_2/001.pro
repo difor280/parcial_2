@@ -4,4 +4,8 @@ CONFIG -= app_bundle
 
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        sobremuestreo.cpp
+
+HEADERS += \
+    sobremuestreo.h
