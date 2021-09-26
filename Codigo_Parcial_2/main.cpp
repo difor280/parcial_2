@@ -9,11 +9,11 @@ using namespace std;
 
 void entrega(unsigned **,unsigned**,unsigned**);
 void meterDat(unsigned**);
-int Comprobar_tamaño(int pixelY,int pixelX);
+int Comprobar_tamano(int pixelY,int pixelX);
 
 int main()
 {
-    string filename= "../001/Imagenes/Bandera_02.png";
+    string filename= "../Codigo_Parcial_2/Imagenes/Bandera_02.png";
     QImage im(filename.c_str());
 
 
@@ -25,7 +25,7 @@ int main()
     //en la posision 1 se guarda en verde
     //en la posision 3 se guarda en rojo
 
-    cout<<"el valor es: "<<Comprobar_tamaño(pixelY, pixelX)<<endl;
+    //cout<<"el valor es: "<<Comprobar_tamaño(pixelY, pixelX)<<endl;
 
     for(unsigned int x=0 ; x <= pixelX ; ++x )
     {
@@ -99,7 +99,8 @@ void meterDat(unsigned**entrega)
 
 }
 
-int Comprobar_tamaño(int pixelY,int pixelX){
+int Comprobar_tamano(int pixelY,int pixelX)
+{
     //comprobar si la matriz necesita sobremuestreo
     if(pixelX < 16 and pixelY<16){
         return 1;
