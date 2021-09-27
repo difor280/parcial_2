@@ -77,7 +77,7 @@ void sobremuestreo::sobreproceso()
 
             }
         }
-        if(guardarfilas>=16)    break;
+        if(guardarfilas==16)    break;
     }
 
 }

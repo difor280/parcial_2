@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h> //new delete
+#include "sobremuestreo.h"
 
 
 using namespace std;
@@ -39,7 +40,9 @@ int main()
             rojo[x][y]=im.pixelColor(x,y).red();
        }
     }
+
     entrega(azul,verde,rojo);
+
 
     return 0;
 }
