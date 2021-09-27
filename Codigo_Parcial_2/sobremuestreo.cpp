@@ -55,44 +55,34 @@ void sobremuestreo::sobreproceso()
 
 
     }
-    unsigned int creciente=3,guardarfilas=0,guardarresultado;
+    unsigned int creciente=3,guardarfilas=0;
 
     while (true)
     {
         for(unsigned c=0; c<columna ; c++)
         {
-            for(unsigned d=0,f=0 ; f<=fila and f<16  ; d++,f++)
+            for(unsigned d=0,f=0 ; f<=fila and guardarfilas<16  ; d++,f++)
             {
                  guardarfilas=guardarfilas+1;
-                 if(d==round(f/creciente))
+                 if(d==round(fila/creciente))
                  {
 
                     green[c][guardarfilas]=verde[c][f];
                     guardarfilas=guardarfilas+1;
-                    green[c][guardarfilas]=verde[c][f]+((verde[c][f+1]-verde[c][f])/((f+2)-f))*((f+1)-f);
-                    blue[c][guardarfilas]=azul[c][f]+((azul[c][f+1]-azul[c][f])/((f+2)-f))*((f+1)-f);;
-                    red[c][guardarfilas]=rojo[c][f]+((rojo[c][f+1]-rojo[c][f])/((f+2)-f))*((f+1)-f);;
+                    green[c][guardarfilas]=verde[c][f]+(((verde[c][f+1]-verde[c][f])/((f+2)-f))*((f+1)-f));
+                    blue[c][guardarfilas]=azul[c][f]+(((azul[c][f+1]-azul[c][f])/((f+2)-f))*((f+1)-f));
+                    red[c][guardarfilas]=rojo[c][f]+(((rojo[c][f+1]-rojo[c][f])/((f+2)-f))*((f+1)-f));
                     d=0;
                  }
 
             }
         }
-        break;
+        if(guardarfilas>=16)    break;
     }
 
 }
 
 
-void sobremuestreo::aumentoX()
-{
-
-
-}
-
-void sobremuestreo::AumentoY()
-{
-
-}
 
 void sobremuestreo::dinamica(unsigned ffila,unsigned ccolumna)
 {

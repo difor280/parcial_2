@@ -1,14 +1,14 @@
 #ifndef SOBREMUESTREO_H
 #define SOBREMUESTREO_H
 #include <cmath>
+#include <iostream>
 
 class sobremuestreo
 {
 public:
     sobremuestreo(unsigned**erojo,unsigned**everde,unsigned**eazul,unsigned long ffila,unsigned long ccolumna);
     void sobreproceso(); //funcion donde van todas las funciones
-    void aumentoX();//aumenta los pixeles pormediando en x
-    void AumentoY();//aumenta los pixeles pormediando en y
+    void rellenar(unsigned,unsigned);
     void dinamica(unsigned ffila,unsigned columna);//es ir convirtiendo todas las memorias necesacias a dinamica
     void duplicar(unsigned **);// duplica los valores en X y Y con su diagonal
 
