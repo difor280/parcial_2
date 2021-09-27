@@ -1,7 +1,6 @@
 #include "sobremuestreo.h"
 
 
-
 sobremuestreo::sobremuestreo(unsigned **erojo, unsigned **everde, unsigned **eazul,unsigned long ffila,unsigned long ccolumna)
 {
     rojo=erojo;
@@ -14,22 +13,29 @@ sobremuestreo::sobremuestreo(unsigned **erojo, unsigned **everde, unsigned **eaz
 
 void sobremuestreo::sobreproceso(unsigned** matriz)
 {
-    duplicar(verde,green);
-    duplicar(rojo,red);
-    duplicar(azul,blue);
-    bool salida=true;
-    while(salida)
+    if(fila<=2 or columna<=2)
     {
-  /*      if()
+        if(fila<=2)
         {
+            unsigned int green[16],red[16];blue[16];
+            for(unsigned int i=1 ; i<= 16 ; i++){
+                red[i]=**rojo;
+                green[i]=**verde;
+                blue[i]=*azul;
 
-
+            }
 
         }
-        else if (columna)
-        {
+        if(columna<=2){
+            unsigned int green[16],red[16];blue[16];
+            for(unsigned int i=1 ; i<= 16 ; i++){
+                red[i]=**rojo;
+                green[i]=**verde;
+                blue[i]=*azul;
+        }
 
-        }*/
+        }
+
     }
 }
 
@@ -53,15 +59,3 @@ void sobremuestreo::dinamica(unsigned **mDimanica,unsigned ffila,unsigned ccolum
    }
 }
 
-void sobremuestreo::duplicar(unsigned ** matrizE,unsigned ** matrizS)
-{
-
-    for(unsigned c=0;c<columna;c=c+2)
-    {
-        for(unsigned f=0;f<fila;f=f+2)
-        {
-             =matrizE[c][f];
-
-        }
-    }
-}
