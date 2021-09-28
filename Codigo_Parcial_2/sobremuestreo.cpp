@@ -167,7 +167,59 @@ void sobremuestreo::aumentoY()
 
 void sobremuestreo::aumentoX()
 {
+    while (true)
+    {
+        unsigned int creciente=3, guardarfila=0;
 
+        for(unsigned fc=0,c=0; fc<fila ; c++,fc++)
+        {
+            guardarfila=guardarfila+1;
+            if(fc==round(fila/creciente)-1 and guardarfila<16)
+            {
+                guardarfila=guardarfila+1;
+                unsigned **g=green,**b=blue,**r=red;
+                rellenar(guardarfila+3,fila,g,b,r);
+            }
+            for(unsigned f=0 ; f<columna ; f++)
+            {
+
+                 if(fc==round(fila/creciente)-1 and c != fila-1 and guardarfila<16 and fila!=16)
+                 {
+                     green[c][guardarfila-1]=verde[c][f];
+                     blue[c][guardarfila-1]=azul[c][f];
+                     red[c][guardarfila-1]=red[c][f];
+
+                     green[c][guardarfila]=verde[c][f]+(((verde[c][f+1]-verde[c][f])/((f+2)-f))*((f+1)-f));
+                     blue[c][guardarfila]=azul[c][f]+(((azul[c][f+1]-azul[c][f])/((f+2)-f))*((f+1)-f));
+                     red[c][guardarfila]=rojo[c][f]+(((rojo[c][f+1]-rojo[c][f])/((f+2)-f))*((f+1)-f));
+
+
+                 }
+                 else if(fc!=round(fila/creciente)-1)
+                 {
+                     green[c][guardarfila]=verde[c][f];
+                     blue[c][guardarfila]=azul[c][f];
+                     red[c][guardarfila]=red[c][f];
+                 }
+
+
+            }
+
+            if(fc==round(fila/creciente))
+            {
+                fc=0;
+            }
+        }
+
+        fila=guardarfila;
+        guardarfila=0;
+        if(fila==16 and columna==16)    break;
+        verde=green;
+        rojo=red;
+        azul=blue;
+        creciente++;
+
+    }
 }
 
 unsigned **sobremuestreo::mostrarverde()
