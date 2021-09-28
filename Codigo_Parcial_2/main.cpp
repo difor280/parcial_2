@@ -19,8 +19,8 @@ int main()
 
 
 
-    unsigned int pixelX= im.height();
     unsigned int pixelY= im.width();
+    unsigned int pixelX= im.height();
     unsigned int **azul=new unsigned *[pixelX],**verde=new unsigned *[pixelX],**rojo=new unsigned *[pixelX];//las tres matrices de colores diferentes
     //en la posicion 0 es se guarda azul
     //en la posision 1 se guarda en verde
@@ -41,7 +41,13 @@ int main()
        }
     }
 
+
+    sobremuestreo *convertir= new sobremuestreo(rojo,verde,azul,pixelY ,pixelX);
+    convertir->sobreproceso();
+
     entrega(azul,verde,rojo);
+
+
 
 
     return 0;
