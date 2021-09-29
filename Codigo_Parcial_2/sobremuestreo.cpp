@@ -23,10 +23,12 @@ void sobremuestreo::sobreproceso()
            dinamicaI(fila*2,columna);
             for(unsigned int c=0 ; c<columna ; c++)
             {
+
                 for(unsigned int f=0 ; f< fila*2 ; f=f+2)
                 {
                     green[c][f]=verde[c][f/2];
                     green[c][f+1]=verde[c][f/2];
+
                     blue[c][f]=azul[c][f/2];
                     blue[c][f+1]=azul[c][f/2];
                     red[c][f]=rojo[c][f/2];
@@ -46,12 +48,16 @@ void sobremuestreo::sobreproceso()
              dinamicaI(fila,columna*2);
              for(unsigned int c=0 ; c<columna*2 ; c=c+2)
              {
+                 unsigned a=0;
                  for(unsigned int f=0 ; f< fila ; f++)
                  {
+                     a=verde[c/2][f];
                      green[c][f]=verde[c/2][f];
                      green[c+1][f]=verde[c/2][f];
+                     a=azul[c/2][f];
                      blue[c][f]=azul[c/2][f];
                      blue[c+1][f]=azul[c/2][f];
+                     a=red[c/2][f];
                      red[c][f]=rojo[c/2][f];
                      red[c+1][f]=rojo[c/2][f];
 
@@ -68,6 +74,7 @@ void sobremuestreo::sobreproceso()
     }
 
     aumentoY();
+    aumentoX();
 
 
 }
@@ -110,35 +117,38 @@ void sobremuestreo::dinamicaE(unsigned ffila, unsigned ccolumna)
 
 void sobremuestreo::aumentoY()
 {
+     unsigned int creciente=3, guardarcolumna=0;
     while (true)
     {
-        unsigned int creciente=3, guardarcolumna=0;
 
-        for(unsigned fc=0,c=0; c<columna ; c++,fc++)
+
+        for(unsigned fc=0,c=0; c<columna and guardarcolumna<16 ; c++,fc++)
         {
             guardarcolumna=guardarcolumna+1;
-            if(fc==round(columna/creciente)-1 and guardarcolumna<16)
+            if(fc>=round(columna/creciente) and guardarcolumna<16)
             {
                 guardarcolumna=guardarcolumna+1;
-                unsigned **g=green,**b=blue,**r=red;
-                rellenar(guardarcolumna+3,fila,g,b,r);
+
             }
-            for(unsigned f=0 ; f<fila ; f++)
+            unsigned **g=green,**b=blue,**r=red;
+            rellenar(guardarcolumna+1,fila+1,fila+1,guardarcolumna-1,g,b,r);
+
+            for(unsigned f=0 ; f<fila  and guardarcolumna<=16; f++)
             {
 
-                 if(fc==round(columna/creciente)-1 and c != columna-1 and guardarcolumna<16 and columna!=16)
+                 if(fc>=round(columna/creciente) and c != columna-1 and guardarcolumna<16 and columna!=16)
                  {
                      green[guardarcolumna-1][f]=verde[c][f];
                      blue[guardarcolumna-1][f]=azul[c][f];
                      red[guardarcolumna-1][f]=red[c][f];
 
-                     green[guardarcolumna][f]=verde[c][f]+(((verde[c][f+1]-verde[c][f])/((f+2)-c))*((c+1)-c));
+                     green[guardarcolumna][f]=verde[c][f]+(((verde[c+1][f]-verde[c][f])/((c+2)-c))*((c+1)-c));
                      blue[guardarcolumna][f]=azul[c][f]+(((azul[c+1][f]-azul[c][f])/((c+2)-c))*((c+1)-c));
                      red[guardarcolumna][f]=rojo[c][f]+(((rojo[c+1][f]-rojo[c][f])/((c+2)-c))*((c+1)-c));
 
 
                  }
-                 else if(fc!=round(columna/creciente)-1)
+                 else if(fc<=round(columna/creciente) and guardarcolumna<16 and columna!=16)
                  {
                      green[guardarcolumna][f]=verde[c][f];
                      blue[guardarcolumna][f]=azul[c][f];
@@ -148,7 +158,7 @@ void sobremuestreo::aumentoY()
 
             }
 
-            if(fc==round(columna/creciente))
+            if(fc>=round(columna/creciente))
             {
                 fc=0;
             }
@@ -156,11 +166,12 @@ void sobremuestreo::aumentoY()
 
         columna=guardarcolumna;
         guardarcolumna=0;
-        if(fila==16 and columna==16)    break;
+        if( columna==16)    break;
         verde=green;
         rojo=red;
         azul=blue;
         creciente++;
+
 
     }
 }
@@ -171,19 +182,20 @@ void sobremuestreo::aumentoX()
     {
         unsigned int creciente=3, guardarfila=0;
 
-        for(unsigned fc=0,c=0; fc<fila ; c++,fc++)
+        for(unsigned fc=0,c=0; c<fila  and guardarfila< 16; c++,fc++)
         {
             guardarfila=guardarfila+1;
-            if(fc==round(fila/creciente)-1 and guardarfila<16)
+            if(fc>=round(fila/creciente) and guardarfila<16)
             {
                 guardarfila=guardarfila+1;
-                unsigned **g=green,**b=blue,**r=red;
-                rellenar(guardarfila+3,fila,g,b,r);
             }
-            for(unsigned f=0 ; f<columna ; f++)
+             unsigned **g=green,**b=blue,**r=red;
+            rellenar(columna+1,guardarfila+1,guardarfila-1,columna+1,g,b,r);
+
+            for(unsigned f=0 ; f<columna  and guardarfila<16; f++)
             {
 
-                 if(fc==round(fila/creciente)-1 and c != fila-1 and guardarfila<16 and fila!=16)
+                 if(fc>=round(fila/creciente) and c != fila-1 and guardarfila<16 and fila!=16)
                  {
                      green[c][guardarfila-1]=verde[c][f];
                      blue[c][guardarfila-1]=azul[c][f];
@@ -195,7 +207,7 @@ void sobremuestreo::aumentoX()
 
 
                  }
-                 else if(fc!=round(fila/creciente)-1)
+                 else if(fc<=round(fila/creciente) and guardarfila<16 and fila!=16)
                  {
                      green[c][guardarfila]=verde[c][f];
                      blue[c][guardarfila]=azul[c][f];
@@ -205,7 +217,7 @@ void sobremuestreo::aumentoX()
 
             }
 
-            if(fc==round(fila/creciente))
+            if(fc>=round(fila/creciente))
             {
                 fc=0;
             }
@@ -213,7 +225,7 @@ void sobremuestreo::aumentoX()
 
         fila=guardarfila;
         guardarfila=0;
-        if(fila==16 and columna==16)    break;
+        if(fila==16 )    break;
         verde=green;
         rojo=red;
         azul=blue;
@@ -237,12 +249,12 @@ unsigned **sobremuestreo::mostrarazul()
     return azul;
 }
 
-void sobremuestreo::rellenar( unsigned mc, unsigned mf, unsigned **matriz1, unsigned **matriz2, unsigned **matriz3)
+void sobremuestreo::rellenar( unsigned mc, unsigned mf, unsigned fc,unsigned cc, unsigned **matriz1, unsigned **matriz2, unsigned **matriz3)
 {
     dinamicaI(mf, mc);
-    for(unsigned c=0 ; c<mc -3; c++)
+    for(unsigned c=0 ; c<cc ; c++)
     {
-        for(unsigned f=0 ; f<mf-3; f++)
+        for(unsigned f=0 ; f<fc; f++)
         {
             green[c][f]=matriz1[c][f];
             blue[c][f]=matriz2[c][f];

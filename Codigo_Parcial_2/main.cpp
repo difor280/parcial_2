@@ -14,13 +14,13 @@ int Comprobar_tamano(int pixelY,int pixelX);
 
 int main()
 {
-    string filename= "../Codigo_Parcial_2/Imagenes/Bandera_02.png";
+    string filename= "../Codigo_Parcial_2/Imagenes/Bandera_02.jpg";
     QImage im(filename.c_str());
 
 
 
-    unsigned int pixelY= im.width();
-    unsigned int pixelX= im.height();
+    unsigned int pixelX= im.width();
+    unsigned int pixelY= im.height();
     unsigned int **azul=new unsigned *[pixelX],**verde=new unsigned *[pixelX],**rojo=new unsigned *[pixelX];//las tres matrices de colores diferentes
     //en la posicion 0 es se guarda azul
     //en la posision 1 se guarda en verde
@@ -45,7 +45,7 @@ int main()
     sobremuestreo *convertir= new sobremuestreo(rojo,verde,azul,pixelY ,pixelX);
     convertir->sobreproceso();
 
-    entrega(azul,verde,rojo);
+    entrega(convertir->mostrarazul(),convertir->mostrarverde(),convertir->mostrarrojo());
 
 
 

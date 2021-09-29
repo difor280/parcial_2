@@ -8,10 +8,9 @@ class sobremuestreo
 public:
     sobremuestreo(unsigned**erojo,unsigned**everde,unsigned**eazul,unsigned long ffila,unsigned long ccolumna);
     void sobreproceso(); //funcion donde van todas las funciones
-    void rellenar( unsigned mc, unsigned mf, unsigned **matriz1, unsigned **matriz2, unsigned **matriz3);
+    void rellenar( unsigned mc, unsigned mf,unsigned fc,unsigned cc, unsigned **matriz1, unsigned **matriz2, unsigned **matriz3);
     void dinamicaI(unsigned ffila,unsigned columna);//es ir convirtiendo todas las memorias necesacias a dinamica
     void dinamicaE(unsigned ffila, unsigned columna);
-    void duplicar(unsigned **);// duplica los valores en X y Y con su diagonal
     void aumentoY();
     void aumentoX();
     unsigned** mostrarverde();
